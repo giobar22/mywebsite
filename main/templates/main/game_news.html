@@ -1,0 +1,100 @@
+{% extends "main/base.html" %}
+{% block content %}
+					<div class="col-md">
+					<div class="game-news-detals bg-secondary">
+						<div class="tittle ">
+							<h5 class="text-white ">{{ object.title }}</h5>
+							<div class="news-detals">
+								<div class="row">
+									<div class="col-md"><img src="{{ object.main_image.url }}"></div>
+									<div class="col-md">
+										<div class="about-game">
+											<div class="row">
+												<div class="col-md-5"><div class="name-this text-danger">Title:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.title }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Year of issue:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.year_of_issue }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Genre:</div></div>
+												<div class="col-md-7">
+													<div class="about-this text-white">
+														{% for genre in object.genres.all%}
+															<a href="#">#{{genre}}</a>
+														{% endfor %}
+													</div>
+												</div>
+												<div class="col-md-5"><div class="name-this text-danger">Developer:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.developer }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Publisher:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.publisher }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Version:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.version }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Repack author:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.repack_author }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Interface language:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.interface_language }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Voice Language:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.voice_Language }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Subtitles:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.subtitles }}</div></div>
+												<div class="col-md-5"><div class="name-this text-danger">Tablet:</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ object.tablet }}</div></div>
+												<div class="col-md-6"><div class="rate-game">rating game</div></div>
+												<div class="col-md-6"><div class="rating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div></div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="game-Description">
+								<h4 class="text-danger">Description:</h4>
+								<p class="text-white">{{ object.description }}</p>
+							</div>
+							<div class="about-repack">
+								<h4 class="text-danger">Features Repack:</h4>
+								<ul class="text-white">
+									{{ object.repack }}
+								</ul>
+							</div>
+							<div class="minimal-system-request">
+								<h3 class="text-danger">Minimal System Request</h3>
+								<ul class="text-white">
+									<li>OS: {{ object.min_os }}</li>
+									<li>Processor: {{ object.min_processor }}</li>
+									<li>Memory: {{ object.min_memory }}</li>
+									<li>Graphics: {{ object.min_graphics }}</li>
+									<li>Storage: {{ object.min_storage }}</li>
+									<li>Sound Card: {{ object.min_sound_card }}</li>
+								</ul>
+							</div>
+							<div class="recomended-system-request">
+								<h3 class="text-danger">Recomended System Request</h3>
+								<ul class="text-white">
+									<li>OS: {{ object.os }}</li>
+									<li>Processor: {{ object.processor }}</li>
+									<li>Memory: {{ object.memory }}</li>
+									<li>Graphics: {{ object.graphics }}</li>
+									<li>Storage: {{ object.storage }}</li>
+									<li>Sound Card: {{ object.sound_card }}</li>
+								</ul>
+							</div>
+							<div class="game-photo-area">
+								<div class="row">
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image1.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image2.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image3.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image4.url }}"></div></div>
+								</div>
+							</div>
+							<div class="videos">
+								<iframe width="100%" height="400" src="{{ object.video_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>	</iframe>
+							    <iframe width="100%" height="400" style="margin-top:10px;" src="{{ object.video_gameplay }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+							<div class="Download text-center">
+								<a href=""><button type="button" class="btn btn-secondary" style="margin-top:20px;" >download</button></a>
+							</div>
+						</div>
+					</div>
+					</div>
+{% endblock %}
