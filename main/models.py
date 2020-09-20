@@ -1,7 +1,8 @@
 from django.db import models
 
 class Genre(models.Model):
-    genre = models.CharField(max_length=100)
+    genre = models.CharField(max_length=20)
+
     def __str__(self):
         return self.genre
 
@@ -30,6 +31,7 @@ class GameNews(models.Model):
     graphics= models.CharField(max_length=30)
     storage= models.CharField(max_length=30)
     sound_card= models.CharField(max_length=30)
+    Hot_News = models.BooleanField(default=False)
     main_image= models.ImageField()
     news_image1= models.ImageField()
     news_image2= models.ImageField()
@@ -37,6 +39,23 @@ class GameNews(models.Model):
     news_image4= models.ImageField()
     video_trailer= models.CharField(max_length=50)
     video_gameplay= models.CharField(max_length=50)
-    genres = models.ManyToManyField(Genre, related_name='category')
+    genres = models.ManyToManyField(Genre)
+    data = models.FileField(upload_to='torrent-files')
     def __str__(self):
         return self.title
+
+class UpComingGames(models.Model):
+    title = models.CharField(max_length=60)
+    description = models.TextField(max_length=1000)
+    main_image= models.ImageField()
+    main_image2= models.ImageField()
+    news_image1= models.ImageField()
+    news_image2= models.ImageField()
+    news_image3= models.ImageField()
+    news_image4= models.ImageField()
+    video_trailer= models.CharField(max_length=50)
+
+
+
+
+

@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% block content %}
+					<div class="col-md">
+					<div class="game-news-detals bg-secondary">
+						<div class="tittle ">
+							<h5 class="text-white ">{{ object.title }}</h5>
+							<div class="news-detals">
+								<div class="row">
+									<div class="col-md"><img src="{{ object.main_image2.url }}"></div>
+								</div>
+							</div>
+							<div class="game-Description">
+								<h4 class="text-danger">Description:</h4>
+								<p class="text-white">{{ object.description }}</p>
+							</div>
+							<div class="game-photo-area">
+								<div class="row">
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image1.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image2.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image3.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image4.url }}"></div></div>
+								</div>
+							</div>
+							<div class="videos">
+								<iframe width="100%" height="400" src="{{ object.video_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>	</iframe>
+							</div>
+
+						</div>
+					</div>
+					</div>
+{% endblock content %}
+
