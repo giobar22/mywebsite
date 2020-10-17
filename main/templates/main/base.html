@@ -1,9 +1,17 @@
 {% load static %}
 <html>
 <head>
-	<title>gamesarea</title>
+	{% block title %}
+		{% if title %}
+			<title>{{ title }}</title>
+		{% else %}
+			<title>Game Areas</title>
+		{% endif %}
+	{% endblock %}
+
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -28,7 +36,14 @@ body{background: #bdbaba !important;}
 @keyframes mymove {50% {text-shadow: 10px 20px 30px black;}
 }
 header {background: #02020259;}
-header .logo img{width: 100%;height: 100%;padding: 20px 20px 20px 20px;}
+textarea.form-control{height:90px;}
+header .logo img{width: 100%;height: 52px;padding: 5px; 0px; 5px; 5px;}
+.profile_image img{width: 120px;height:100px;border-radius: 50px; 50px;}
+.profile_image_reply img{width:40px;height:40px;border-radius: 20px; 20px;}
+.comment-content{border:1px solid black; margin-top:10px;border-radius:10px;padding:10px;}
+.replied-comments{margin-top:10px;}
+.reply-content{border:1px solid black; margin-top:5px;}
+.hr{border:1px solid black;margin-top:-7px;}
 header .nav-item{background: #f3eded;}
 header .nav-item a{color: black;}
 header .nav-item a:hover{background: #d8d4d4;color: black;}
@@ -45,7 +60,7 @@ section .game-news img{width: 100%;height: 380px;box-shadow: 0px 20px 20px 0px r
 section .game-news img:hover{opacity: 0.3;transition: all 1s;}
 section .img-container{position:relative;}
 section .img-container .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#cccaca;opacity:0;transition:opacity 500ms ease-in-out;display: block;}
-section .img-container:hover .overlay{opacity:1;}
+section .img-container:hover .overlay{opacity:0.4;}
 section .overlay span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;}
 section .pagination{padding: 40px 0px 0px 15%;}
 section .pagination a{color: black;}
@@ -67,6 +82,15 @@ footer h6{color: white;}
 .name-this{margin-top:10px;}
 .about-this{margin-top:10px;}
 .expected-new img{width: 100%;height: 380px;margin: 20px 0px 0px 0px;}
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+.account-heading {
+  font-size: 2.5rem;
+}
 @media (max-width: 767.98px){
 	#myDIV h1{font-size: 10px;}
 	section .pagination{padding:30px 0px 0px 0px;width: 80%;}
@@ -90,7 +114,7 @@ footer h6{color: white;}
 				<div class="row align-items-center">
 					<div class="col-md-3">
 						<div class="logo">
-							<img src="img/logo.png">
+							<img src="{% for logo in logo %}{{logo.logo_image.url}}{% endfor %}">
 						</div>
 					</div>
 					<div class="col-md-7">
@@ -119,33 +143,13 @@ footer h6{color: white;}
 					</div>
 					<div class="col-md-2">
 						<div class="login-register">
-							<button type="button" class="btn btn-light " ref="#myModal" data-toggle="modal" data-target="#myModal">Log-in</button>
-							<div class="modal fade" id="myModal">
-								<div class="modal-dialog">
-							      <div class="modal-content">
-							        <div class="modal-header">
-							        	<h4>Log-in</h4>
-							          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							        </div>
-							        <div class="modal-body">
-							          <div class="form-group">
-							    		<label for="exampleInputEmail1">User-name</label>
-							    		<input class="form-control" id="exampleInputEmail1" placeholder="User-name" type="email">
-							  		  </div>
-									  <div class="form-group">
-									  	<label for="exampleInputPassword1">Password</label>
-										<input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
-									  </div>
-							          <p class="text-right"><a href="#">Forgot password?</a></p>
-							        </div>
-							        <div class="modal-footer">
-							          <a href="#" data-dismiss="modal" class="btn">Close</a>
-							          <a href="#" class="btn btn-primary">Log-in</a>
-							        </div>
-							      </div>
-							    </div>
-							</div>
-							<button type="button" class="btn btn-light">Register</button>
+							{% if user.is_authenticated %}
+								<a type="button" class="btn btn-light" href="{% url 'profile' %}">Profile</a>
+								<a type="button" class="btn btn-light" href="{% url 'logout' %}">Logout</a>
+							{% else %}
+								<a type="button" class="btn btn-light" href="{% url 'login' %}">Sign In</a>
+								<a type="button" class="btn btn-light"  href="{% url 'register' %}">Register</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -170,20 +174,16 @@ footer h6{color: white;}
 					        	<div class="carousel-inner">
 					        		<div class="carousel-item active">
 					            		<div class="row">
-					              			<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news1.jpg"></div></a></div>
-					              			<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news6.jpg"></div></a></div>
-					              			<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news11.jpg"></div></a></div>
-					              			<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news4.jpg"></div></a></div>
-					              			<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news8.jpg"></div></a></div>
+											{% for games in like_games %}
+					              				<div class="col-md"><a href="{% url 'game_details' games.id %}"><div class="slide-photo"><img src="{{games.main_image.url}}"></div></a></div>
+					              			{% endfor %}
 					            		</div>
 					          		</div>
 					          		<div class="carousel-item">
 							            <div class="row">
-							             	<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news13.jpg"></div></a></div>
-							              	<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news16.jpg"></div></a></div>
-							              	<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news12.jpg"></div></a></div>
-							              	<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news10.jpg"></div></a></div>
-							             	<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news19.jpg"></div></a></div>
+							             	{% for games in like_games %}
+					              				<div class="col-md"><a href="{% url 'game_details' games.id %}"><div class="slide-photo"><img src="{{games.main_image.url}}"></div></a></div>
+					              			{% endfor %}
 							            </div>
 					         		</div>
 					        	</div>
@@ -208,20 +208,20 @@ footer h6{color: white;}
 						        <div class="carousel-inner">
 						         	<div class="carousel-item active">
 						            	<div class="row">
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news7.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news9.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news11.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news13.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news16.jpg"></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
 						            		</div>
 						          		</div>
 						          	<div class="carousel-item">
 						           		<div class="row">
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news19.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news12.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news1.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news4.jpg"></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src="img/news5.jpg"></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
+						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
 						            	</div>
 						         	</div>
 						        </div>
@@ -269,7 +269,7 @@ footer h6{color: white;}
 									      		<a class="nav-link text-white" href="{% url 'upcoming' %}">UPCOMING</a>
 									    	</li>
 									    	<li class="nav-item bg-secondary">
-									      		<a class="nav-link text-white" href="#">POPULAR</a>
+									      		<a class="nav-link text-white" href="{% url 'popular' %}">POPULAR</a>
 									    	</li>
 									    	<li class="nav-item bg-secondary">
 									      		<a class="nav-link text-white" href="#">MODSPATCHES</a>
@@ -280,35 +280,43 @@ footer h6{color: white;}
 								</div>
 								<div class="col-md-4">
 									<form class="input-group" action="{% url 'search' %}" method="GET">
-										{% csrf_token %}
-						                <input type="search" class="form-control" placeholder="Search" id="search" name="search">
-						                <button class="btn btn-secondary" type="submit" id="search_submit">
+						                <input type="search" class="form-control" placeholder="Search" id="search" name="q" value="{{request.GET.q}}">
+						                <button class="btn btn-secondary" type="submit" id="search_submit" >
 						                    <i class="fa fa-search"></i>
 						                </button>
 						            </form>
 								</div>
-							{% block content %}
-							{% endblock content %}
+
+							{% if messages %}
+								{% for message in messages %}
+								<div class="col-md-7">
+									<div class="alert alert-{{ message.tags }}">
+										{{ message }}
+									</div>
+								</div>
+								{% endfor %}
+							{% endif %}
+							{% block content %}{% endblock content %}
 							<div class="col-md-12">
 								<ul class="pagination">
-									{% if is_paginated %}
+									{% if page_obj.has_other_pages %}
 										{% if page_obj.has_previous %}
-											<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+											<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a></li>
 										{% endif %}
 										{% for num in page_obj.paginator.page_range %}
 											{% if page_obj.number == num %}
-												<li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+												<li class="page-item active"><a class="page-link" href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a></li>
 											{% elif num > page_obj.number|add:'-6' and num < page_obj.number|add:'6' %}
-												<li class="page-item"><a class="page-link  " href="?page={{ num }}">{{ num }}</a></li>
+												<li class="page-item"><a class="page-link  " href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a></li>
 											{% endif %}
 										{% endfor %}
 										{% if page_obj.has_next %}
-											<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+											<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a></li>
 										{% endif %}
 									{% endif %}
 								</ul>
 							</div>
-					</div>
+						</div>
 				</section>
 			</div>
 		</main>
@@ -325,7 +333,7 @@ footer h6{color: white;}
       select: function (event, ui) { //item selected
         AutoCompleteSelectHandler(event, ui)
       },
-      minLength: 2,
+      minLength: 1,
     });
   });
 
@@ -335,18 +343,76 @@ footer h6{color: white;}
   }
 
 </script>
+<script>
+	$(document).ready(function(event){
+		$(document).on('click', '#like', function(event){
+			event.preventDefault();
+			var pk = $(this).attr('value');
+			$.ajax({
+				type: 'POST',
+				url: '{% url "like" %}',
+				data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+				dataType: 'json',
+				success: function(response){
+					$('#like-section').html(response['form'])
+					console.log($('#like-section').html(response['form']));
+				},
+				error: function(rs, e){
+					console.log(rs.responseText);
+				},
+			});
+		});
+		$('.reply-btn').click(function() {
+			$(this).parent().parent().next('.replied-comments').fadeToggle()
+		});
+	});
 
-
-
-
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.14.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.14.1/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+</script>
+<script>
+	$(document).ready(function(event){
+		$(document).on('submit', '.comment-form', function(event){
+			event.preventDefault();
+			console.log($(this).serialize());
+			$.ajax({
+				type: 'POST',
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				dataType: 'json',
+				success: function(response){
+					$('.main-comment-section').html(response['form']);
+					$('textarea').val('');
+					$('.reply-btn').click(function(){
+						$(this).parent().parent().next('.replied-comments').fadeToggle();
+						$('textarea').val('');
+					});
+				},
+				error: function(rs, e){
+					console.log(rs.responseText);
+				},
+			});
+		});
+		$(document).on('submit', '.reply-form', function(event){
+			event.preventDefault();
+			console.log($(this).serialize());
+			$.ajax({
+				type: 'POST',
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				dataType: 'json',
+				success: function(response){
+					$('.main-comment-section').html(response['form']);
+					$('textarea').val('');
+					$('.reply-btn').click(function(){
+						$(this).parent().parent().next('.replied-comments').fadeToggle();
+						$('textarea').val('');
+					});
+				},
+				error: function(rs, e){
+					console.log(rs.responseText);
+				},
+			});
+		});
+	});
+</script>
 </body>
 </html>

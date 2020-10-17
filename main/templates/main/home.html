@@ -1,17 +1,19 @@
 {% extends 'main/base.html' %}
+{% block title %}
+	<title>Home</title>
+{% endblock %}
 {% block content %}
-
-					{% for game in games %}
+					{% for game in page_obj %}
 					<div class="col-md-4">
 						<div class="game-news">
 							<div class="img-container">
-								<a href="{% url 'game_details' game.id %}"><img src="{{game.main_image.url}}" alt="">
+								<a href="{% url 'game_details' game.id %}"><img src="{{game.main_image.url}}" alt="{{game.title}}">
 									<div class="overlay">
-										<span>
+										<!--<span>
 											<div id="myDIV">
 												<h1>{{game.title}}</h1>
 											</div>
-										</span>
+										</span>-->
 									</div>
 								</a>
 							</div>

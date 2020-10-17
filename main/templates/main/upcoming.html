@@ -1,4 +1,7 @@
 {% extends 'main/base.html' %}
+{% block title %}
+	<title>Upcoming Games</title>
+{% endblock %}
 {% block content %}
 
 					{% for game in upcoming_games %}
@@ -7,11 +10,7 @@
 							<div class="img-container">
 								<a href="{% url 'upcoming_details' game.id %}"><img src="{{game.main_image.url}}" alt="">
 									<div class="overlay">
-										<span>
-											<div id="myDIV">
-												<h1>{{game.title}}</h1>
-											</div>
-										</span>
+
 									</div>
 								</a>
 							</div>

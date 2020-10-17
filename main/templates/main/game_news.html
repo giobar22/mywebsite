@@ -1,46 +1,92 @@
 {% extends "main/base.html" %}
+{% block title %}
+<title>{{games.title}}</title>
+{% endblock %}
 {% block content %}
 					<div class="col-md">
 					<div class="game-news-detals bg-dark">
-						<div class="tittle ">
-							<h5 class="text-white ">{{ object.title }}</h5>
+						<div class="tittle">
+							<h5 class="text-white ">{{ games.title }}</h5>
 							<div class="news-detals">
 								<div class="row">
-									<div class="col-md"><img src="{{ object.main_image.url }}"></div>
+									<div class="col-md"><img src="{{ games.main_image.url }}"></div>
 									<div class="col-md">
 										<div class="about-game">
 											<div class="row">
 												<div class="col-md-5"><div class="name-this text-danger">Title:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.title }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.title }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Year of issue:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.year_of_issue }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.year_of_issue }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Genre:</div></div>
 												<div class="col-md-7">
 													<div class="about-this text-white">
-														{% for genre in object.genres.all%}
+														{% for genre in games.genres.all%}
 															<a href="{%url 'category_news' genre.id%}">#{{genre}}</a>
 														{% endfor %}
 													</div>
 												</div>
 												<div class="col-md-5"><div class="name-this text-danger">Developer:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.developer }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.developer }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Publisher:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.publisher }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.publisher }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Version:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.version }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.version }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Repack author:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.repack_author }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.repack_author }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Interface language:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.interface_language }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.interface_language }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Voice Language:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.voice_Language }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.voice_Language }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Subtitles:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.subtitles }}</div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.subtitles }}</div></div>
 												<div class="col-md-5"><div class="name-this text-danger">Tablet:</div></div>
-												<div class="col-md-7"><div class="about-this text-white">{{ object.tablet }}</div></div>
-												<div class="col-md-6"><div class="rate-game">rating game</div></div>
-												<div class="col-md-6"><div class="rating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div></div>
+												<div class="col-md-7"><div class="about-this text-white">{{ games.tablet }}</div></div>
+												<div class="col-md-4">
+													<div id="like-section" style="margin-top:30px">
+														{% include 'main/like_section.html' %}
+													</div>
+												</div>
+												<div class="col-md-2"></div>
+												<div class="col-md-6">
+													<div id="favourite-section">
+														{% if request.user.is_authenticated %}
+															{% if is_favourite %}
+															<a href="{% url 'favourite_game' id=games.id %}">
+																<i class="fa fa-heart fa-2x text-danger" style="margin-top:34px;"></i>
+																<h6>Remove from Favourite</h6>
+															</a>
+															{% else %}
+															<a href="{% url 'favourite_game' id=games.id %}">
+																<i class="fa fa-heart fa-2x" style="margin-top:34px;"></i>
+																<h6>Add Favourite</h6>
+															</a>
+															{% endif %}
+														{% else %}
 
+															<a href="#" data-toggle="modal" data-target="#exampleModal">
+																<i class="fa fa-heart fa-2x" style="margin-top:34px;"></i>
+																<h6>Add Favourite</h6>
+															</a>
+															<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+															  <div class="modal-dialog" role="document">
+																<div class="modal-content">
+																  <div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	  <span aria-hidden="true">&times;</span>
+																	</button>
+																  </div>
+																  <div class="modal-body">
+																	Please <a href="{% url 'login' %}">Sign In</a>or <a href="{% url 'register' %}">Register</a>
+																  </div>
+																  <div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																  </div>
+																</div>
+															  </div>
+															</div>
+														{% endif %}
+													</div>
+												</div>
 											</div>
 
 										</div>
@@ -49,52 +95,77 @@
 							</div>
 							<div class="game-Description">
 								<h4 class="text-danger">Description:</h4>
-								<p class="text-white">{{ object.description }}</p>
+								<p class="text-white">{{ games.description }}</p>
 							</div>
 							<div class="about-repack">
 								<h4 class="text-danger">Features Repack:</h4>
 								<ul class="text-white">
-									{{ object.repack }}
+									{{ games.repack }}
 								</ul>
 							</div>
 							<div class="minimal-system-request">
 								<h3 class="text-danger">Minimal System Request</h3>
 								<ul class="text-white">
-									<li>OS: {{ object.min_os }}</li>
-									<li>Processor: {{ object.min_processor }}</li>
-									<li>Memory: {{ object.min_memory }}</li>
-									<li>Graphics: {{ object.min_graphics }}</li>
-									<li>Storage: {{ object.min_storage }}</li>
-									<li>Sound Card: {{ object.min_sound_card }}</li>
+									<li>OS: {{ games.min_os }}</li>
+									<li>Processor: {{ games.min_processor }}</li>
+									<li>Memory: {{ games.min_memory }}</li>
+									<li>Graphics: {{ games.min_graphics }}</li>
+									<li>Storage: {{ games.min_storage }}</li>
+									<li>Sound Card: {{ games.min_sound_card }}</li>
 								</ul>
 							</div>
 							<div class="recomended-system-request">
 								<h3 class="text-danger">Recomended System Request</h3>
 								<ul class="text-white">
-									<li>OS: {{ object.os }}</li>
-									<li>Processor: {{ object.processor }}</li>
-									<li>Memory: {{ object.memory }}</li>
-									<li>Graphics: {{ object.graphics }}</li>
-									<li>Storage: {{ object.storage }}</li>
-									<li>Sound Card: {{ object.sound_card }}</li>
+									<li>OS: {{ games.os }}</li>
+									<li>Processor: {{ games.processor }}</li>
+									<li>Memory: {{ games.memory }}</li>
+									<li>Graphics: {{ games.graphics }}</li>
+									<li>Storage: {{ games.storage }}</li>
+									<li>Sound Card: {{ games.sound_card }}</li>
 								</ul>
 							</div>
 							<div class="game-photo-area">
 								<div class="row">
-									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image1.url }}"></div></div>
-									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image2.url }}"></div></div>
-									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image3.url }}"></div></div>
-									<div class="col-md-6"><div class="game-photo"><img src="{{ object.news_image4.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ games.news_image1.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ games.news_image2.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ games.news_image3.url }}"></div></div>
+									<div class="col-md-6"><div class="game-photo"><img src="{{ games.news_image4.url }}"></div></div>
 								</div>
 							</div>
 							<div class="videos">
-								<iframe width="100%" height="400" src="{{ object.video_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>	</iframe>
-							    <iframe width="100%" height="400" style="margin-top:10px;" src="{{ object.video_gameplay }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								<iframe width="100%" height="400" src="{{ games.video_trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>	</iframe>
+							    <iframe width="100%" height="400" style="margin-top:10px;" src="{{ games.video_gameplay }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 							<div class="Download text-center">
-								<a href="{{ object.data.url }}"><button type="button" class="btn btn-secondary" style="margin-top:20px;" >download</button></a>
+								<a href="{{ games.data.url }}"><button type="button" class="btn btn-secondary" style="margin-top:20px;" >download</button></a>
 							</div>
 						</div>
 					</div>
+						<div class="col-md-12">
+							<div class="row">
+							{% for random in randoms%}
+								<div class="col-md-4">
+									<div class="game-news">
+										<div class="img-container">
+											<a href="{% url 'game_details' random.id %}"><img src="{{random.main_image.url}}" alt="">
+												<div class="overlay">
+													<span>
+														<div id="myDIV">
+															<h1>{{random.title}}</h1>
+														</div>
+													</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							</div>
+						</div>
+					<div class="col-md-12">
+						<div class="main-comment-section">
+							{% include 'main/comments.html' %}
+						</div>
 					</div>
 {% endblock content %}
