@@ -27,7 +27,6 @@ class UpComingGamesListView(ListView):
     paginate_by = 1
 
 
-
 class UpComingGamesDetailView(DetailView):
     model = UpComingGames
     template_name = 'main/upcoming_details.html'
@@ -46,7 +45,7 @@ def GamesDetailView(request, id):
     comments = Comment.objects.filter(news=games, reply=None).order_by('-id')
     category = Genre.objects.filter(pk=id)
     random_news = list(GameNews.objects.filter(genres__in=list(category)))
-    randoms = random.sample(random_news, 1)
+    randoms = random.sample(random_news, 0)
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
@@ -76,7 +75,7 @@ def GamesDetailView(request, id):
 
 
 def categories(request):
-    categories = Genre.objects.all()
+    categories = Genre.objects.all().order_by('genre')
     return {"categories": categories}
 
 
@@ -143,17 +142,6 @@ def search(request):
     return render(request, "main/home.html", context)
 
 
-def download(request):
-    news = get_object_or_404(GameNews, id=id)
-    news.download.add()
-    news.save()
-
-    context = {
-        'total_download': news.total_download()
-    }
-    return context
-
-
 def logo(request):
     logo = Logo.objects.all()
     return {"logo": logo}
@@ -197,7 +185,7 @@ def game_favourite_list(request):
 
 
 def top_like_games(request):
-    like_games = GameNews.objects.all().annotate(count=Count('likes')).order_by('-count')[:5]
+    like_games = GameNews.objects.all().annotate(count=Count('likes')).order_by('-count')[:6]
     print(like_games)
     return {'like_games': like_games}
 

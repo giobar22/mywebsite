@@ -11,101 +11,22 @@
 
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+	<script src="{%static 'main/javascript/jquery_1.min.js' %}"></script>
+  	<script src="{%static 'main/javascript/popper.min.js' %}"></script>
+  	<script src="{%static 'main/javascript/bootstrap.min.js'%}"></script>
+  	<link href="{%static 'main/css/font-awesome.min.css'%}" rel="stylesheet">
+	<script src="{% static 'main/javascript/jquery.min.js'%}"> </script>
+	<link rel="stylesheet" href="{% static 'main/css/jquery-ui.css'%}">
+	<script src="{% static 'main/javascript/jquery-ui.min.js'%}"></script>
+	<link rel="stylesheet" href="{% static 'main/css/swiper-bundle.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/swiper-bundle.min.css' %}">
+	<script src="{% static 'main/javascript/swiper-bundle.js' %}"></script>
+	<script src="{% static 'main/javascript/swiper-bundle.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <style>
-
-
-body{background: #bdbaba !important;}
-@font-face {
-  font-family: nino;
-  src: url(fonts/nino.ttf);}
-#myDIV {
-  animation: mymove 5s infinite;
-}
-.container{background: #dcdcdc !important;padding: 0px 0px 0px 0px !important;}
-
-@keyframes mymove {50% {text-shadow: 10px 20px 30px black;}
-}
-header {background: #02020259;}
-textarea.form-control{height:90px;}
-header .logo img{width: 100%;height: 52px;padding: 5px; 0px; 5px; 5px;}
-.profile_image img{width: 120px;height:100px;border-radius: 50px; 50px;}
-.profile_image_reply img{width:40px;height:40px;border-radius: 20px; 20px;}
-.comment-content{border:1px solid black; margin-top:10px;border-radius:10px;padding:10px;}
-.replied-comments{margin-top:10px;}
-.reply-content{border:1px solid black; margin-top:5px;}
-.hr{border:1px solid black;margin-top:-7px;}
-header .nav-item{background: #f3eded;}
-header .nav-item a{color: black;}
-header .nav-item a:hover{background: #d8d4d4;color: black;}
-.slide-content .nav-link {background: grey;}
-.slide-content {margin-top:30px;}
-.slide-content .nav-link a{color: black;}
-section{padding: 0px 5px 0px 5px;}
-main .sidebar {box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.9);width: 100%;}
-main .sidebar a:hover{background: #cccaca;transition: all 1s;color:black;}
-main .sidebar .list-group-item{background:#02020259;color:white; }
-main .sticky{position: -webkit-sticky;position: sticky;top: 0;}
-section .game-news{margin-top: 20px;}
-section .game-news img{width: 100%;height: 380px;box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.9);}
-section .game-news img:hover{opacity: 0.3;transition: all 1s;}
-section .img-container{position:relative;}
-section .img-container .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#cccaca;opacity:0;transition:opacity 500ms ease-in-out;display: block;}
-section .img-container:hover .overlay{opacity:0.4;}
-section .overlay span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;}
-section .pagination{padding: 40px 0px 0px 15%;}
-section .pagination a{color: black;}
-.tittle{padding: 30px;}
-.slide-photo{width: 100%; height: 300px;}
-.slide-photo img{width: 100%;height: 100%;}
-.carousel-item{padding: 50px 30px 50px 30px;}
-.nav-item{margin: 0px;}
-.page-item{margin: 0px;}
-.news-detals img{width: 100%;height: 480px;}
-.game-news-detals {margin-top:20px; }
-.game-Description{margin-top:40px; }
-.about-repack{margin-top:40px;}
-footer{width: 100%;background:grey;margin-top: 30px;padding: 15px 0px 9px 0px;height: 50px}
-footer h6{color: white;}
-.section .expected-new{padding-right: 5px;}
-.game-photo-area .game-photo img{width: 100%;height: 300px;padding: 0px 0px 20px 0px;transition: 0.7s;filter: grayscale(70%);}
-.game-photo-area .game-photo img:hover{filter: grayscale(0);transform:scale(1.12);}
-.name-this{margin-top:10px;}
-.about-this{margin-top:10px;}
-.expected-new img{width: 100%;height: 380px;margin: 20px 0px 0px 0px;}
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-.account-heading {
-  font-size: 2.5rem;
-}
-@media (max-width: 767.98px){
-	#myDIV h1{font-size: 10px;}
-	section .pagination{padding:30px 0px 0px 0px;width: 80%;}
-	.slide-photo{width: 100%; height: 300px;}
-
-}
-@media (max-width: 991.98px){
-	#myDIV h1{font-size: 10px;}
-}
-/*scrollbar */
-::-webkit-scrollbar {width: 12px;}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; border-radius: 10px;}
-::-webkit-scrollbar-thumb {background: grey;border-radius: 10px;}
-::-webkit-scrollbar-thumb:hover {background: white;}
 </style>
 <body>
 	<div class="container">
@@ -158,84 +79,24 @@ footer h6{color: white;}
 		<div class="slide-content">
 			<div class="nav-slide-content">
 				<ul class="nav nav-tabs">
-					<li class="nav-item"><h5>TOP 10 Games</h5></li>
+					<li class="nav-item"><h3 style="margin-top:4px;margin-left:10px;">TOP 10</h3></li>
 					<li class="nav-item" style="margin-left: 5%;">
-				    	<a class="nav-link active" data-toggle="tab" href="#home"><b>Rating</b></a>
+				    	<a class="nav-link active" data-toggle="tab" href="#home"><b>Like</b></a>
 				    </li>
-				    <li class="nav-item">
-				    	<a class="nav-link" data-toggle="tab" href="#menu1"><b>Download</b></a>
-				    </li>
-
 				</ul>
 				<div class="tab-content">
-					<div id="home" class=" tab-pane active">
-				    	<div class="slide-content">
-							<div id="demo" class="carousel slide" data-ride="carousel">
-					        	<div class="carousel-inner">
-					        		<div class="carousel-item active">
-					            		<div class="row">
-											{% for games in like_games %}
-					              				<div class="col-md"><a href="{% url 'game_details' games.id %}"><div class="slide-photo"><img src="{{games.main_image.url}}"></div></a></div>
-					              			{% endfor %}
-					            		</div>
-					          		</div>
-					          		<div class="carousel-item">
-							            <div class="row">
-							             	{% for games in like_games %}
-					              				<div class="col-md"><a href="{% url 'game_details' games.id %}"><div class="slide-photo"><img src="{{games.main_image.url}}"></div></a></div>
-					              			{% endfor %}
-							            </div>
-					         		</div>
-					        	</div>
-
-						        <!-- Left and right controls -->
-						        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-						          	<span class="carousel-control-prev-icon"></span>
-						        </a>
-						        <a class="carousel-control-next" href="#demo" data-slide="next">
-						          	<span class="carousel-control-next-icon"></span>
-						        </a>
-						    </div>
-						</div>
+					<div id="home" class="tab-pane active">
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+								  	{% for games in like_games %}
+										<div class="swiper-slide"><a href="{% url 'game_details' games.id%}"><img src="{{ games.main_image.url }}"></a></div>
+									{% endfor %}
+								</div>
+								<div class="swiper-pagination"></div>
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+							</div>
 					</div>
-				    <div id="menu1" class=" tab-pane fade">
-				    	<div class="slide-content">
-				    		<div id="demo" class="carousel slide" data-ride="carousel">
-
-						        <!-- Indicators -->
-
-				        		<!-- The slideshow -->
-						        <div class="carousel-inner">
-						         	<div class="carousel-item active">
-						            	<div class="row">
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						            		</div>
-						          		</div>
-						          	<div class="carousel-item">
-						           		<div class="row">
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						              		<div class="col-md"><a href=""><div class="slide-photo"><img src=""></div></a></div>
-						            	</div>
-						         	</div>
-						        </div>
-
-						        <!-- Left and right controls -->
-						        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-						        	<span class="carousel-control-prev-icon"></span>
-						        </a>
-						        <a class="carousel-control-next" href="#demo" data-slide="next">
-						          	<span class="carousel-control-next-icon"></span>
-						        </a>
-						    </div>
-						</div>
-				    </div>
 				</div>
 			</div>
 		</div>
@@ -256,22 +117,22 @@ footer h6{color: white;}
 					<section>
 						<div class="row">
 								<div class="col-md-8">
-									<nav class=" navbar-expand-lg">
+									<nav class="navbar-expand-lg">
 									  	<ul class="navbar-nav">
-									  		<li class="nav-item bg-secondary">
+									  		<li class="nav-item">
 									      		<a class="nav-link text-white " href="{% url 'home' %}">GAMES</a>
 									    	</li>
 
-									    	<li class="nav-item bg-secondary">
+									    	<li class="nav-item">
 									      		<a class="nav-link text-white " href="{% url 'hot_news' %}">HOTGAMES</a>
 									    	</li>
-									    	<li class="nav-item bg-secondary">
+									    	<li class="nav-item">
 									      		<a class="nav-link text-white" href="{% url 'upcoming' %}">UPCOMING</a>
 									    	</li>
-									    	<li class="nav-item bg-secondary">
+									    	<li class="nav-item">
 									      		<a class="nav-link text-white" href="{% url 'popular' %}">POPULAR</a>
 									    	</li>
-									    	<li class="nav-item bg-secondary">
+									    	<li class="nav-item">
 									      		<a class="nav-link text-white" href="#">MODSPATCHES</a>
 									    	</li>
 									  	</ul>
@@ -319,14 +180,14 @@ footer h6{color: white;}
 						</div>
 				</section>
 			</div>
+			</div>
 		</main>
-		<footer class="text-center">
+		<footer class="text-center bg-dark">
 			<h6>2020</h6>
 		</footer>
 	</div>
 
 <script>
-
   $(function() {
     $("#search").autocomplete({
       source: "/search_auto/",
@@ -341,7 +202,6 @@ footer h6{color: white;}
   {
     var selectedObj = ui.item;
   }
-
 </script>
 <script>
 	$(document).ready(function(event){
@@ -414,5 +274,43 @@ footer h6{color: white;}
 		});
 	});
 </script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        '@0.00': {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        '@0.75': {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        '@1.00': {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        '@1.50': {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+    });
+  </script>
 </body>
 </html>

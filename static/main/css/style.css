@@ -1,0 +1,117 @@
+body{background:#3a3a3a;}
+@font-face {
+  font-family: nino;
+  src: url(fonts/nino.ttf);}
+
+.container{padding: 0px 0px 0px 0px !important;}
+
+@keyframes mymove {50% {text-shadow: 10px 20px 30px black;}
+}
+header {background: black;}
+textarea.form-control{height:90px;}
+header .logo img{width: 100%;height: 52px;padding: 5px; 0px; 5px; 5px;}
+.profile_image img{width: 120px;height:100px;border-radius: 50px; 50px;}
+.profile_image_reply img{width:40px;height:40px;border-radius: 20px; 20px;}
+.comment-content{border:1px solid black; margin-top:10px;border-radius:10px;padding:10px;}
+.replied-comments{margin-top:10px;}
+.reply-content{border:1px solid black; margin-top:5px;}
+.hr{border:1px solid black;margin-top:-7px;}
+header .nav-item{background: #f3eded;}
+header .nav-item a{color: black;}
+header .nav-item a:hover{background: #d8d4d4;color: black;}
+.slide-content .nav-link {background: grey;}
+.slide-content {margin-top:30px;}
+.slide-content .nav-link a{color: black;}
+section{padding: 0px 5px 0px 5px;}
+main .sidebar {box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.9);width: 100%;}
+main .sidebar a:hover{background: #cccaca;transition: all 1s;color:black;}
+.list-group{background:#777676;}
+.navbar-expand-lg .navbar-nav .nav-item{background:#777676;}
+main .sidebar .list-group-item{background:#02020259;color:white; }
+main .sticky{position: -webkit-sticky;position: sticky;top: 0;}
+section .game-news{margin-top: 20px;}
+section .game-news img{width: 100%;height: 380px;box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.9);}
+section .game-news img:hover{opacity: 0.3;transition: all 1s;}
+section .img-container{position:relative;}
+section .img-container .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#cccaca;opacity:0;transition:opacity 500ms ease-in-out;display: block;}
+section .img-container:hover .overlay{opacity:0.4;}
+section .overlay span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;}
+section .pagination{padding: 40px 0px 0px 15%;}
+section .pagination a{color: black;}
+.tittle{padding: 30px;}
+.slide-photo{width: 100%; height: 300px;}
+.slide-photo img{width: 100%;height: 100%;}
+.carousel-item{padding: 50px 30px 50px 30px;}
+.nav-item{margin: 0px;}
+.page-item{margin: 0px;}
+.news-detals img{width: 100%;height: 480px;}
+.game-news-detals {margin-top:20px; }
+.game-Description{margin-top:40px; }
+.about-repack{margin-top:40px;}
+footer{width: 100%;margin-top: 30px;padding: 15px 0px 9px 0px;height: 50px}
+footer h6{color: white;}
+.section .expected-new{padding-right: 5px;}
+.game-photo-area .game-photo img{width: 100%;height: 300px;padding: 0px 0px 20px 0px;transition: 0.7s;filter: grayscale(70%);}
+.game-photo-area .game-photo img:hover{filter: grayscale(0);transform:scale(1.12);}
+.name-this{margin-top:10px;}
+.about-this{margin-top:10px;}
+.expected-new img{width: 100%;height: 380px;margin: 20px 0px 0px 0px;}
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+.account-heading {
+  font-size: 2.5rem;
+}
+@media (max-width: 767.98px){
+	#myDIV h1{font-size: 10px;}
+	section .pagination{padding:30px 0px 0px 0px;width: 80%;}
+	.slide-photo{width: 100%; height: 300px;}
+
+}
+@media (max-width: 991.98px){
+	#myDIV h1{font-size: 10px;}
+}
+/*scrollbar */
+::-webkit-scrollbar {width: 12px;}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; border-radius: 10px;}
+::-webkit-scrollbar-thumb {background: grey;border-radius: 10px;}
+::-webkit-scrollbar-thumb:hover {background: white;}
+
+
+
+.swiper-container {
+      width: 100%;
+      height: 400px;
+      padding:30px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+.swiper-slide img{height:100%;width:100%;}
+
+.swiper-container1 {
+      width: 100%;
+      height: 400px;
+      padding:30px;
+    }
